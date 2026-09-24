@@ -11,7 +11,7 @@ int main()
 {
     bn::core::init();
 
-    bn::backdrop::set_color(bn::color(104, 213, 232));
+    bn::backdrop::set_color(bn::color(12, 26, 28));
 
     auto dot = bn::sprite_items::bun.create_sprite(0, 0);
 
