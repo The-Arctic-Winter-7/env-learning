@@ -2,10 +2,13 @@
 #include <bn_core.h>
 #include <bn_keypad.h>
 #include <bn_sprite_ptr.h>
+#include <bn_log.h>
 
 #include "bn_sprite_items_bun.h"
 
 #define FLOOR (80 - 8)
+
+static constexpr int jump_limit = 2;
 
 int main()
 {
@@ -22,10 +25,17 @@ int main()
 
     bn::fixed jump_strength = 1.3;
 
+    int jump_counter = 0;
+    bool is_at_jump_limit = false;
+
     while (true)
     {
+
+        BN_LOG("Bunny current Y POS | ", dot.y());
+
         if (bn::keypad::left_held())
         {
+            dot.set_horizontal_flip(false);
             if (dot.x() <= -130)
             {
                 dot.set_x(130);
@@ -37,6 +47,8 @@ int main()
         }
         if (bn::keypad::right_held())
         {
+            dot.set_horizontal_flip(true);
+
             if (dot.x() >= 130)
             {
                 dot.set_x(-130);
